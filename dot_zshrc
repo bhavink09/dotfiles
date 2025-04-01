@@ -1,8 +1,10 @@
+export PATH=$PATH:/opt/homebrew/bin:$HOME/.cargo/bin
+export EDITOR=nvim
+
+alias cz=chezmoi
+
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config ~/.mytheme.omp.yaml)"
 fi
 
-export PATH=$PATH:$HOME/.cargo/bin
-export EDITOR=nvim
 
-alias cz=chezmoi
