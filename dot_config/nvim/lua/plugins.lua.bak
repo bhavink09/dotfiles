@@ -1,0 +1,16 @@
+return {
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lsp",
+    "simrat39/rust-tools.nvim",
+    "mfussenegger/nvim-dap",
+    "nvim-neotest/nvim-nio",
+    "rcarriga/nvim-dap-ui",
+    "nvim-treesitter/nvim-treesitter",
+    "nvim-lualine/lualine.nvim",
+    "nvim-telescope/telescope.nvim",
+    "voldikss/vim-floaterm",
+    "kyazdani42/nvim-tree.lua"
+}

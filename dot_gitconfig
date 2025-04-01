@@ -1,0 +1,8 @@
+[user]
+    name = bhavink09
+    email = bhavin.kamdar.28@gmail.com
+
+[alias]
+    cm = commit
+    ps = push
+    st = status
