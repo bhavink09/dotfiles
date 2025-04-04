@@ -1,38 +1,42 @@
--- FloaTerm configurationt
-vim.keymap.set("n", "<leader>ft", ":FloatermNew --name=myfloat --height=0.8 --width=0.7 --autoclose=2 fish <CR> ")
-vim.keymap.set("n", "t", ":FloatermToggle myfloat<CR>")
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>:q<CR>")
+vim.keymap.set("n", "<leader>cg", ":RustLsp openCargo<CR>", {})
 
--- build
-vim.keymap.set("n", "<leader>b", ":!cargo build<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>r", ":!cargo run<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>e", ":!cargo test<CR>", { noremap = true, silent = true })
+-- DAP keymaps
+vim.keymap.set("n", "<F5>", function()
+	require("dap").defaults.rust.exception_breakpoints = { "rust_panic" }
+	require("dap").continue()
+end)
+vim.keymap.set("n", "<F10>", function()
+	require("dap").step_over()
+end)
+vim.keymap.set("n", "<F11>", function()
+	require("dap").step_into()
+end)
+vim.keymap.set("n", "<F12>", function()
+	require("dap").step_out()
+end)
+-- vim.keymap.set("n", "<Leader>lp", function()
+-- 	require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+-- end)
+-- vim.keymap.set("n", "<Leader>dr", function()
+-- 	require("dap").repl.open()
+-- end)
+-- vim.keymap.set("n", "<Leader>dl", function()
+-- 	require("dap").run_last()
+-- end)
+-- vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
+-- 	require("dap.ui.widgets").hover()
+-- end)
+-- vim.keymap.set({ "n", "v" }, "<Leader>dp", function()
+-- 	require("dap.ui.widgets").preview()
+-- end)
+-- vim.keymap.set("n", "<Leader>df", function()
+-- 	local widgets = require("dap.ui.widgets")
+-- 	widgets.centered_float(widgets.frames)
+-- end)
+-- vim.keymap.set("n", "<Leader>ds", function()
+-- 	local widgets = require("dap.ui.widgets")
+-- 	widgets.centered_float(widgets.scopes)
+-- end)
 
--- Term Toggle Function
-local term_buf = nil
-local term_win = nil
-
-function TermToggle(height)
-	if term_win and vim.api.nvim_win_is_valid(term_win) then
-		vim.cmd("hide")
-	else
-		vim.cmd("botright new")
-		local new_buf = vim.api.nvim_get_current_buf()
-		vim.cmd("resize " .. height)
-		if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
-			vim.cmd("buffer " .. term_buf) -- go to terminal buffer
-			vim.cmd("bd " .. new_buf) -- cleanup new buffer
-		else
-			vim.cmd("terminal")
-			term_buf = vim.api.nvim_get_current_buf()
-			vim.wo.number = false
-			vim.wo.relativenumber = false
-			vim.wo.signcolumn = "no"
-		end
-		vim.cmd("startinsert!")
-		term_win = vim.api.nvim_get_current_win()
-	end
-end
-
--- Term Toggle Keymaps
-vim.keymap.set("n", "<leader>tn", ":lua TermToggle(20)<CR>", { noremap = true, silent = true })
+-- code companion keymaps
+vim.keymap.set("n", "<leader>aq", ":CodeCompanionChat<CR>", { silent = true })
